@@ -17,6 +17,14 @@ func main() {
 ```
 
 3.运行
-
+```golang
 go run test.go
+```
 
+
+4.生成二进制包
+```golang
+go build test.go
+
+test.exe
+```
