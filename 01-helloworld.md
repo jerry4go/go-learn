@@ -26,5 +26,7 @@ go run test.go
 ```golang
 go build test.go
 
+生成的二进制包可以直接在windows下运行
+
 test.exe
 ```
