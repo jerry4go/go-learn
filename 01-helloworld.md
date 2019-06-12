@@ -30,3 +30,5 @@ go build test.go
 
 test.exe
 ```
+
+![image](./static/go-command.jpg)
