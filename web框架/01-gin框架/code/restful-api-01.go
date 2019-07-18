@@ -20,10 +20,10 @@ func main() {
 		log.Fatalln(err)
 	}
 	defer db.Close()
-
+    // 配置mysql连接数
 	db.SetMaxIdleConns(20)
 	db.SetMaxOpenConns(20)
-
+    // 验证mysql连接串是否配置正确
 	if err := db.Ping(); err != nil {
 		log.Fatalln(err)
 	}
@@ -35,7 +35,7 @@ func main() {
 		c.String(http.StatusOK, "It works\n")
 	})
 
-	// 插入数据
+	// 插入数据  POST
 	router.POST("/person", func(c *gin.Context) {
 		firstName := c.Request.FormValue("first_name")
 		lastName := c.Request.FormValue("last_name")
@@ -54,7 +54,7 @@ func main() {
 		})
 	})
 
-	// 查询表的所有数据
+	// 查询表的所有数据   GET
 	type Person struct {
 		Id        int    `json:"id" form:"id"`
 		FirstName string `json:"first_name" form:"first_name"`
@@ -84,7 +84,7 @@ func main() {
 		})
 	})
 
-	// 查询单条数据
+	// 查询单条数据   GET
 	router.GET("/person/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		var person Person
@@ -103,7 +103,7 @@ func main() {
 		})
 	})
 
-	// 更新数据
+	// 更新数据   PUT
 	router.PUT("/person/:id", func(c *gin.Context) {
 		cid := c.Param("id")
 		id, err := strconv.Atoi(cid)
@@ -137,7 +137,7 @@ func main() {
 
 	})
 
-	// 删除数据
+	// 删除数据   DELETE
 	router.DELETE("/person/:id", func(c *gin.Context) {
 		cid := c.Param("id")
 		id, err := strconv.Atoi(cid)
