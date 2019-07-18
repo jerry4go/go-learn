@@ -20,8 +20,9 @@ func main() {
 		log.Fatalln(err)
 	}
 	defer db.Close()
-    // 配置mysql连接数
+    // 配置mysql最大空闲连接数
 	db.SetMaxIdleConns(20)
+	// 配置mysql最大并发连接数
 	db.SetMaxOpenConns(20)
     // 验证mysql连接串是否配置正确
 	if err := db.Ping(); err != nil {
@@ -62,15 +63,20 @@ func main() {
 	}
 
 	router.GET("/persons", func(c *gin.Context) {
+	    // 返回一个rows对象
 		rows, err := db.Query("SELECT id,first_name,last_name FROM person")
 
 		if err != nil {
 			log.Fatalln(err)
 		}
 		defer rows.Close()
+		// make 声明对象，当切片没有元素时，JSON会返回[]
 		persons := make([]Person, 0)
+		// 直接声明切片，当切片没有元素时，JSON会返回null
 		//var persons []Person
 
+		// 通过Next()方法遍历每行数据，并且绑定到person对象
+		// 最后append到persons切片
 		for rows.Next() {
 			var person Person
 			rows.Scan(&person.Id, &person.FirstName, &person.LastName)
