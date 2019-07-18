@@ -68,8 +68,8 @@ func main() {
 			log.Fatalln(err)
 		}
 		defer rows.Close()
-		//persons := make([]Person, 0)
-		var persons []Person
+		persons := make([]Person, 0)
+		//var persons []Person
 
 		for rows.Next() {
 			var person Person
