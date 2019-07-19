@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-    //   parseTime=true  把获取到的string类型的时间转换为时间类型
+        //   parseTime=true  把获取到的string类型的时间转换为时间类型
 	//   loc=Local       把默认的UTC +0 时区转换为 本地时区
 	db, err := sql.Open("mysql",
 		"root:a123456@tcp(x.x.x.x:3306)/gintestdb?parseTime=true&loc=Local")
