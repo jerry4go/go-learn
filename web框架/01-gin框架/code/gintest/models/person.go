@@ -45,12 +45,16 @@ func (p *Person) GetPersons() (persons []Person, err error) {
 	return
 }
 
+// 获取单个用户的信息
+
 func (p *Person) GetPerson() (person Person, err error) {
 	err = db.SqlDB.QueryRow("SELECT id,first_name,last_name FROM person WHERE id=?", p.Id).Scan(
 		&person.Id, &person.FirstName, &person.LastName,
 	)
 	return
 }
+
+// 修改单个用户的信息
 
 func (p *Person) ModPerson() (ra int64, err error) {
 	stmt, err := db.SqlDB.Prepare("UPDATE person SET first_name=?,last_name=? WHERE id=?")
@@ -65,6 +69,8 @@ func (p *Person) ModPerson() (ra int64, err error) {
 	ra, err = rs.RowsAffected()
 	return
 }
+
+// 删除单个用户的信息
 
 func (p *Person) DelPerson() (ra int64, err error) {
 	rs, err := db.SqlDB.Exec("DELETE FROM person WHERE id=?", p.Id)
