@@ -9,11 +9,12 @@ import (
 	. "../models"
 	"github.com/gin-gonic/gin"
 )
-
+//  根目录测试
 func IndexApi(c *gin.Context) {
 	c.String(http.StatusOK, "It works")
 }
 
+// 新增用户
 func AddPersonApi(c *gin.Context) {
 	firstName := c.Request.FormValue("first_name")
 	lastName := c.Request.FormValue("last_name")
@@ -33,6 +34,8 @@ func AddPersonApi(c *gin.Context) {
 	})
 }
 
+// 获取整个表的数据
+
 func GetPersonsApi(c *gin.Context) {
 	var p Person
 	persons, err := p.GetPersons()
@@ -43,6 +46,8 @@ func GetPersonsApi(c *gin.Context) {
 		"persons": persons,
 	})
 }
+
+// 获取单个用户的数据
 
 func GetPersonApi(c *gin.Context) {
 	cid := c.Param("id")
@@ -59,6 +64,8 @@ func GetPersonApi(c *gin.Context) {
 		"person": person,
 	})
 }
+
+// 修改单个用户的数据
 
 func ModPersonApi(c *gin.Context) {
 	cid := c.Param("id")
@@ -80,6 +87,8 @@ func ModPersonApi(c *gin.Context) {
 		"msg": msg,
 	})
 }
+
+// 删除单个用户的数据
 
 func DelPersonApi(c *gin.Context) {
 	cid := c.Param("id")
