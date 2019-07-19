@@ -11,7 +11,7 @@ import (
 )
 //  根目录测试
 func IndexApi(c *gin.Context) {
-	c.String(http.StatusOK, "It works")
+	c.String(http.StatusOK, "It works\n")
 }
 
 // 新增用户
