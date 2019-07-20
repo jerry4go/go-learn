@@ -13,6 +13,13 @@ func main() {
 	//   loc=Local       把默认的UTC +0 时区转换为 本地时区
 	db, err := sql.Open("mysql",
 		"root:a123456@tcp(x.x.x.x:3306)/gintestdb?parseTime=true&loc=Local")
+        //   验证mysql连接是否正常
+	err = db.Ping()
+	
+	if err != nil {
+		log.Fatalln(err)
+	}
+	
 	var myTime time.Time
 	rows, err := db.Query("SELECT current_timestamp()")
 	fmt.Println(time.Now())
