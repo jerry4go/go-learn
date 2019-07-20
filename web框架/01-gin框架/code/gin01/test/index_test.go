@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// 单元测试  go test
 func TestIndexGetRouter(t *testing.T) {
 	router := initRouter.SetupRouter()
 	w := httptest.NewRecorder()
