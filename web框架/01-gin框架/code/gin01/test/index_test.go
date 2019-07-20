@@ -10,6 +10,8 @@ import (
 )
 
 // 单元测试  go test
+// 通过 assert 进行断言，来判断返回状态码和返回值是否与代码中的值一致。
+
 func TestIndexGetRouter(t *testing.T) {
 	router := initRouter.SetupRouter()
 	w := httptest.NewRecorder()
