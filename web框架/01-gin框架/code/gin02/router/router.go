@@ -13,6 +13,9 @@ func helloGin(context *gin.Context) {
 
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
+	
+        // 第一种写法，单独写每一个方法和对应的handler
+	
 	// router.GET("/", helloGin)
 	// router.POST("/", helloGin)
 	// router.PUT("/", helloGin)
@@ -21,7 +24,8 @@ func SetupRouter() *gin.Engine {
 	// router.HEAD("/", helloGin)
 	// router.OPTIONS("/", helloGin)
 
-	// 路由分组
+	// 第二种方法 路由分组
+	
 	index := router.Group("/")
 	{
 		index.Any("", helloGin)
