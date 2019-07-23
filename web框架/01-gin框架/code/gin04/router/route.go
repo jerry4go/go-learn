@@ -20,5 +20,6 @@ func RouteCheck() *gin.Engine {
 	router.StaticFile("/favicon.ico", "./statics/favicon.ico")
 
 	router.GET("/", handler.Index)
+	router.POST("/user/register", handler.UserRegister)
 	return router
 }
